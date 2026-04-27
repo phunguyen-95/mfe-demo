@@ -3,6 +3,7 @@ const { ModuleFederationPlugin } = require("webpack").container;
 
 
 
+
 module.exports = {
   mode: "development",
   entry: "./src/index.ts",

@@ -27,12 +27,14 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2
         with:
-          publish-dir: "mfe-dashboard/dist"
-          production-branch: main
-          production-deploy: true 
+          working-directory: mfe-dashboard
+          run: netlify deploy --prod --dir=dist
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_DASHBOARD_SITE_ID }}
