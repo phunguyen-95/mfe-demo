@@ -24,7 +24,9 @@ jobs:
 
       - name: Build
         working-directory: shell
-        run: npm run build
+        run: | 
+          echo "NODE_ENV: $NODE_ENV"
+          npm run build
         env:
           NODE_ENV: production
 
