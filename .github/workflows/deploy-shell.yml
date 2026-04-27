@@ -1,0 +1,39 @@
+name: Deploy Shell
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "shell/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+          cache-dependency-path: shell/package-lock.json
+
+      - name: Install
+        working-directory: shell
+        run: npm ci
+
+      - name: Build
+        working-directory: shell
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2
+        with:
+          publish-dir: "shell/dist"
+          production-branch: main
+          production-deploy: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SHELL_SITE_ID }}
