@@ -1,0 +1,6 @@
+mfe-dashboard/dist/*
+mfe-dashboard/node_modules
+
+shell/dist
+shell/node_modules
+
