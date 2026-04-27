@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve",
-    "build": "webpack --mode production",
+    "build": "NODE_ENV=production webpack --mode production",
     "serve": "npm run build && serve dist -p 3001"
   },
   "keywords": [],
