@@ -1,0 +1,39 @@
+name: Deploy Dashboard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "mfe-dashboard/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+          cache: "npm"
+          cache-dependency-path: mfe-dashboard/package-lock.json
+      - name: Install
+        working-directory: mfe-dashboard
+        run: npm ci
+
+      - name: Build
+        working-directory: mfe-dashboard
+        run: npm run buildj
+        env:
+          NODE_ENV: production
+
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2
+        with:
+          publish-dir: "mfe-dashboard/dist"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_DASHBOARD_SITE_ID }}
+
+
+
