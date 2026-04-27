@@ -31,7 +31,6 @@ jobs:
         run: npm install -g netlify-cli
 
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2
         with:
           working-directory: mfe-dashboard
           run: netlify deploy --prod --dir=dist
