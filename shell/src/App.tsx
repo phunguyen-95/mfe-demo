@@ -19,7 +19,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <div className="container">
-        <h1>Shell App</h1>
+        <h1>Shell App V1</h1>
         <Login onSubmit={handleSubmit} />
         <div className="mt-16" />
         <Suspense fallback={<div>Loading...</div>}>
