@@ -2,8 +2,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
-  mode: "development",
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   entry: "./src/index.ts",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    publicPath: process.env.NODE_ENV === "production"
+      ? "https://mfe-dashboard-lokum-79a2da.netlify.app/"
+      : "http://localhost:3001/",
+  },
   devServer: {
     port: 3001,
     historyApiFallback: true,

@@ -5,14 +5,8 @@ const { ModuleFederationPlugin } = require("webpack").container;
 
 
 module.exports = {
-  mode: process.env.NODE_ENV === "production" ? "production" : "development",
+  mode: "development",
   entry: "./src/index.ts",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    publicPath: process.env.NODE_ENV === "production"
-    ? "https://mfe-dashboard-xxxx.netlify.app/"
-    : "http://localhost:3001/",
-  },
   devServer: {
     port: 3000,
     historyApiFallback: true,
