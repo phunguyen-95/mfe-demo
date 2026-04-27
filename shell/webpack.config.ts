@@ -1,9 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
-const isProd = process.env.NODE_ENV === "production"
+const isProd = process.env.NODE_ENV === "production";
 
 console.log("NODE_ENV:", process.env.NODE_ENV);
-
 
 module.exports = {
   mode: isProd ? "production" : "development",
@@ -27,9 +26,14 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: "shell",
-      remotes: isProd ? {dashboard: 'fe_dashboard@https://mfe-dashboard-lokum-79a2da.netlify.app/'}: {
-        dashboard: "mfe_dashboard@http://localhost:3001/remoteEntry.js",
-      },
+      remotes: isProd
+        ? {
+            dashboard:
+              "mfe_dashboard@https://mfe-dashboard-lokum-79a2da.netlify.app/remoteEntry.js",
+          }
+        : {
+            dashboard: "mfe_dashboard@http://localhost:3001/remoteEntry.js",
+          },
       shared: {
         react: { singleton: true, requiredVersion: "^18.0.0" },
         "react-dom": { singleton: true, requiredVersion: "^18.0.0" },
