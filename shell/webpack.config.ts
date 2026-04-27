@@ -1,9 +1,9 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
-
+const isProd = process.env.NODE_ENV === "production"
 
 module.exports = {
-  mode: process.env.NODE_ENV === "production" ? "production" : "development",
+  mode: isProd ? "production" : "development",
   entry: "./src/index.ts",
   devServer: {
     port: 3000,
@@ -24,7 +24,7 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       name: "shell",
-      remotes: {
+      remotes: isProd ? {dashboard: 'fe_dashboard@https://mfe-dashboard-lokum-79a2da.netlify.app/'}: {
         dashboard: "mfe_dashboard@http://localhost:3001/remoteEntry.js",
       },
       shared: {
