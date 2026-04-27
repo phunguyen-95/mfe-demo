@@ -2,6 +2,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const isProd = process.env.NODE_ENV === "production"
 
+console.log("NODE_ENV:", process.env.NODE_ENV);
+
+
 module.exports = {
   mode: isProd ? "production" : "development",
   entry: "./src/index.ts",
