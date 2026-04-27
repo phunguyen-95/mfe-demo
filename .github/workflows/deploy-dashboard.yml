@@ -23,8 +23,7 @@ jobs:
 
       - name: Build
         working-directory: mfe-dashboard
-        run: npm run buildj
-        env:
+        run: npm run build
           NODE_ENV: production
 
       - name: Deploy to Netlify
