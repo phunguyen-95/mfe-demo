@@ -21,7 +21,7 @@ export default function DashboardApp() {
 
   return (
     <div style={{ padding: 20, background: "#e8f4fd", borderRadius: 8 }}>
-      <h2>Dashboard v2</h2>
+      <h2>Dashboard v3</h2>
       <div>{renderInit}</div>
     </div>
   );
